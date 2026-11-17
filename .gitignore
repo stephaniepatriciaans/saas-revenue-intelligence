@@ -1,0 +1,28 @@
+# KKBox data
+data/raw/
+data/processed/
+data/samples/
+*.duckdb
+*.duckdb.wal
+
+# Credentials
+.env
+.env.*
+!.env.example
+profiles.yml
+secrets.toml
+
+# Python
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
+# macOS
+.DS_Store
+
+# dbt generated files
+target/
+dbt_packages/
+logs/
