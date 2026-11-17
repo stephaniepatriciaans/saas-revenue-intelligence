@@ -19,13 +19,16 @@ To Do -> In Progress -> Done
 
 ## Phase 1 Stories
 
-| ID | Story | Points |
+Parent Epic: SRIP-1 — Project Planning & Metric Contracts
+
+| Jira Issue | Story | Story Points |
 |---|---|---:|
-| SRIP-01 | Business Requirements | 2 |
-| SRIP-02 | Financial Metric Contracts | 3 |
-| SRIP-03 | Dimensional Data Model | 3 |
-| SRIP-04 | Data Quality Contracts | 3 |
-| SRIP-05 | GitHub and Jira Setup | 2 |
+| SRIP-8 | Define Business Requirements & MVP Scope | 2 |
+| SRIP-9 | Define SaaS Financial Metric Contracts | 3 |
+| SRIP-10 | Design Dimensional Data Model | 3 |
+| SRIP-11 | Define Data Quality & Reconciliation Contracts | 3 |
+| SRIP-12 | Set Up GitHub & Jira Workflow | 2 |
+| **Total** | | **13** |
 
 Total Phase 1: 13 story points.
 
