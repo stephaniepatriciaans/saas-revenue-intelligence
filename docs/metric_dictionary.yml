@@ -1,65 +1,86 @@
 version: 1
 
+project:
+  name: SaaS Revenue Intelligence Platform
+  dataset: KKBox WSDM 2018
+  metric_status: proposed_pending_validation
+
 reporting:
-  calendar: calendar_month
+  period: calendar_month
   snapshot: month_end
   currency: source_monetary_units
-  status: proposed_pending_data_validation
 
 metrics:
   mrr:
-    grain: customer_month
-    aggregation: sum
+    name: Monthly Recurring Revenue
     definition: >
       Monthly-normalized recurring subscription value
-      for active paid customer entitlements.
+      for active paid customers at month-end.
+    grain: customer_month
+    source: transactions
     exclusions:
-      - free_entitlements
-      - nonrecurring_payments
-      - inactive_entitlements
-    normalization:
-      day_based: amount_paid * 365.25 / (12 * days)
-      calendar_month: monthly_plan_price
-    limitations:
-      - discount_terms_may_be_ambiguous
-      - overlapping_transactions_require_resolution
+      - free_subscriptions
+      - inactive_subscriptions
+      - nonrecurring_transactions
+    calculation:
+      day_based: amount_paid * 365.25 / (12 * plan_days)
+      calendar_month: monthly_recurring_price
 
   arr:
+    name: Annual Recurring Revenue
+    definition: Annualized MRR run-rate.
     grain: reporting_month
     formula: mrr * 12
-    definition: annualized_recurring_revenue_run_rate
 
   nrr:
+    name: Net Revenue Retention
+    definition: >
+      Recurring revenue retained from the opening
+      customer cohort, including expansion and
+      contraction but excluding new customers.
     grain: reporting_month
     formula: >
       (starting_mrr + expansion_mrr
        - contraction_mrr - churned_mrr)
       / starting_mrr
-    population: previous_month_end_paid_customers
-    exclude_new_customers: true
     zero_denominator: null
 
   customer_churn:
+    name: Customer Churn Rate
+    definition: >
+      Percentage of opening paid customers
+      without an active paid subscription
+      at the reporting month-end.
     grain: reporting_month
     formula: churned_customers / starting_customers
-    population: previous_month_end_paid_customers
     zero_denominator: null
 
   gross_revenue_churn:
+    name: Gross Revenue Churn
+    definition: >
+      Percentage of opening recurring revenue
+      lost through churn and contraction.
     grain: reporting_month
     formula: >
       (churned_mrr + contraction_mrr) / starting_mrr
     zero_denominator: null
 
   cohort_retention:
-    grain: acquisition_cohort_month_and_age
+    name: Cohort Retention
+    definition: >
+      Percentage of customers from a first-observed
+      paid subscription cohort still active
+      after a given number of months.
+    grain: cohort_month_and_age
     formula: active_cohort_customers / cohort_size
-    cohort_basis: first_observed_paid_month
 
   assumed_gross_margin:
+    name: Scenario Gross Margin
+    definition: >
+      Gross margin calculated using explicitly
+      assumed costs rather than observed costs.
     grain: reporting_month_and_scenario
     formula: >
       (revenue - assumed_cogs) / revenue
-    zero_denominator: null
     observed_costs: false
-    scenario_only: true
+    zero_denominator: null
