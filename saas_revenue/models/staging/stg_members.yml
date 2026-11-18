@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_members
+    description: >
+      Typed KKBox membership records
+      Grain: one source customer record
+      Raw demographic values are preserved
+
+    columns:
+      - name: customer_id
+        description: Unique KKBox customer identifier
+        data_tests:
+          - not_null
+          - unique
+
+      - name: city_code
+        description: Encoded source city value
+        data_tests:
+          - not_null
+
+      - name: age_raw
+        description: >
+          Original reported age converted to integer
+          Unrealistic ages are not filtered
+
+      - name: gender
+        description: >
+          Reported gender. Missing values are allowed
+
+      - name: registration_method_id
+        description: Source registration method code
+        data_tests:
+          - not_null
+
+      - name: registration_date
+        description: Parsed membership registration date
+        data_tests:
+          - not_null
+
+      - name: _source_file
+        description: Original CSV filename
+        data_tests:
+          - not_null
+
+      - name: _ingested_at
+        description: Raw ingestion timestamp
+        data_tests:
+          - not_null
