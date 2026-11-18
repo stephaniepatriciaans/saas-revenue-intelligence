@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: int_transaction_day_conflicts
+    description: >
+      Customer-day summaries of KKBox transaction
+      multiplicity and conflicting billing attributes
+      One row per customer and transaction date.
+      Does not resolve event order or paid entitlement
+
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: transaction_date
+        data_tests:
+          - not_null
+
+      - name: transaction_count
+        data_tests:
+          - not_null
+
+      - name: has_multiple_transactions
+        data_tests:
+          - not_null
+
+      - name: has_expiry_conflict
+        data_tests:
+          - not_null
+
+      - name: has_payment_conflict
+        data_tests:
+          - not_null
+
+      - name: has_plan_duration_conflict
+        data_tests:
+          - not_null
+
+      - name: has_mixed_payment_status
+        data_tests:
+          - not_null
+
+      - name: has_attribute_conflict
+        data_tests:
+          - not_null
