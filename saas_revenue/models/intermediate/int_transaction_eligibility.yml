@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: int_transaction_eligibility
+    description: >
+      Transaction-level eligibility and anomaly flags
+      Preserves every staging transaction record
+      Paid-billing candidacy does not establish MRR
+
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: is_positive_payment
+        data_tests:
+          - not_null
+
+      - name: is_zero_payment
+        data_tests:
+          - not_null
+
+      - name: has_valid_plan_days
+        data_tests:
+          - not_null
+
+      - name: has_valid_date_order
+        data_tests:
+          - not_null
+
+      - name: has_billing_fields
+        data_tests:
+          - not_null
+
+      - name: is_paid_billing_candidate
+        data_tests:
+          - not_null
+
+      - name: has_transaction_anomaly
+        data_tests:
+          - not_null
