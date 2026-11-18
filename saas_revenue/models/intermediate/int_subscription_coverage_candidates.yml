@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: int_subscription_coverage_candidates
+    description: >
+      Transaction-level provisional subscription coverage
+      intervals. Expiry is treated as exclusive.
+      These are not authoritative paid entitlements.
+
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: transaction_date
+        data_tests:
+          - not_null
+
+      - name: candidate_start_date
+        data_tests:
+          - not_null
+
+      - name: candidate_end_date
+        data_tests:
+          - not_null
+
+      - name: same_day_transaction_count
+        data_tests:
+          - not_null
+
+      - name: has_multiple_transactions
+        data_tests:
+          - not_null
+
+      - name: has_attribute_conflict
+        data_tests:
+          - not_null
+
+      - name: has_mixed_payment_status
+        data_tests:
+          - not_null
+
+      - name: has_candidate_coverage
+        data_tests:
+          - not_null
+
+      - name: is_unambiguous_paid_candidate
+        data_tests:
+          - not_null
