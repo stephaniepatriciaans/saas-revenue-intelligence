@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_churn_labels
+    description: >
+      KKBox competition churn outcomes
+      Grain: one labeled customer from train_v2
+      These labels are reserved for predictive modeling
+      and must not be used as financial churn metrics
+
+    columns:
+      - name: customer_id
+        description: Unique customer identifier
+        data_tests:
+          - not_null
+          - unique
+
+      - name: is_churn
+        description: >
+          Competition churn target
+          1 indicates churn-positive,
+          0 indicates churn-negative
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+
+      - name: _source_file
+        description: Original source filename
+        data_tests:
+          - not_null
+
+      - name: _ingested_at
+        description: Timestamp when source was ingested
+        data_tests:
+          - not_null
