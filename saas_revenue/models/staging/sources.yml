@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: kkbox
+    description: >
+      Raw KKBox WSDM 2018 subscription datasets
+      ingested into DuckDB from local CSV files.
+
+    schema: raw
+
+    tables:
+      - name: transactions_v2
+        description: >
+          Raw subscription transaction events.
+          Includes payments, renewals, cancellation
+          flags, and membership expiry dates.
+          Grain: one source transaction record.
+
+        columns:
+          - name: msno
+            description: Source customer identifier
+
+          - name: payment_plan_days
+            description: Recorded subscription plan duration
+
+          - name: actual_amount_paid
+            description: Actual recorded transaction payment
+
+          - name: transaction_date
+            description: Raw transaction date in YYYYMMDD format
+
+          - name: membership_expire_date
+            description: Raw recorded membership expiry date
+
+          - name: is_cancel
+            description: Source cancellation flag, not financial churn
+
+          - name: _source_file
+            description: Original source CSV filename
+
+          - name: _ingested_at
+            description: Timestamp of raw ingestion
+
+      - name: members_v3
+        description: >
+          Raw KKBox customer membership attributes.
+          Grain: one source member record.
+
+        columns:
+          - name: msno
+            description: Source customer identifier
+
+          - name: city
+            description: Raw customer city code
+
+          - name: bd
+            description: Raw age-related field; values require profiling
+
+          - name: registration_init_time
+            description: Raw registration date in YYYYMMDD format
+
+      - name: train_v2
+        description: >
+          Competition-specific customer churn labels.
+          Reserved for predictive modeling, not financial churn.
+          Grain: one labeled customer record.
+
+        columns:
+          - name: msno
+            description: Source customer identifier
+
+          - name: is_churn
+            description: Competition churn outcome, 0 or 1

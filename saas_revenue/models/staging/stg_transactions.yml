@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: stg_transactions
+    description: >
+      Typed KKBox transaction records. Grain is one
+      source transaction row. Source anomalies are
+      preserved for downstream lifecycle modeling.
+
+    columns:
+      - name: customer_id
+        description: Source KKBox customer identifier
+        data_tests:
+          - not_null
+
+      - name: payment_method_id
+        data_tests:
+          - not_null
+
+      - name: payment_plan_days
+        data_tests:
+          - not_null
+
+      - name: plan_list_price
+        data_tests:
+          - not_null
+
+      - name: actual_amount_paid
+        data_tests:
+          - not_null
+
+      - name: transaction_date
+        data_tests:
+          - not_null
+
+      - name: membership_expire_date
+        data_tests:
+          - not_null
+
+      - name: is_auto_renew
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+
+      - name: is_cancel
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+
+      - name: _source_file
+        data_tests:
+          - not_null
+
+      - name: _ingested_at
+        data_tests:
+          - not_null
