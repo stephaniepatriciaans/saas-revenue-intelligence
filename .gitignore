@@ -1,6 +1,7 @@
 # KKBox data
 data/raw/
-data/processed/
+data/processed/*
+!data/processed/mrr_sensitivity.csv
 data/samples/
 *.duckdb
 *.duckdb.wal

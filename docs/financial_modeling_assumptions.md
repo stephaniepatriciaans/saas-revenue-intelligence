@@ -70,40 +70,46 @@ Modeled MRR and ARR remain provisional estimates and
 must not be represented as observed financial results.
 
 
-## Expiry-Duration Sensitivity Analysis
+## Financial Sensitivity Analysis — March 2017
 
-Five analytical thresholds were evaluated against
-`int_subscription_coverage_candidates`:
+A scenario-based analysis recomputed modeled customer-month
+coverage and recurring revenue under five expiry-duration
+thresholds.
 
-| Maximum days | Eligible paid transactions | Unambiguous paid candidates | Eligible customers |
-|---|---:|---:|---:|
-| 90 | 1,111,515 | 1,099,050 | 999,921 |
-| 180 | 1,141,834 | 1,127,389 | 1,020,572 |
-| 365 | 1,206,991 | 1,189,481 | 1,075,591 |
-| 450 | 1,306,087 | 1,287,002 | 1,170,344 |
-| 730 | 1,337,247 | 1,311,981 | 1,175,849 |
+| Days | Paid customers | Ambiguous | MRR (TWD) | MRR change |
+|---|---:|---:|---:|---:|
+| 90 | 885,655 | 288,718 | 114,780,180.57 | -15.20% |
+| 180 | 903,576 | 270,590 | 116,900,258.32 | -13.64% |
+| 365 | 954,588 | 219,312 | 123,185,148.70 | -8.99% |
+| 450 | 1,047,706 | 126,068 | 135,357,698.47 | Baseline |
+| 730 | 1,051,582 | 122,161 | 135,841,997.18 | +0.36% |
 
-### Findings
+### Interpretation
 
-The 450-day threshold is the current modeled baseline.
+The current 450-day scenario produces approximately
+NT$135.36 million in modeled March 2017 MRR.
 
-Compared with 450 days:
-- The 90-day scenario excludes 170,423 eligible customers.
-- The 365-day scenario excludes 94,753 eligible customers.
-- The 730-day scenario includes 5,505 additional customers.
+Reducing the threshold to 365 days lowers the estimate
+by approximately NT$12.17 million (8.99%).
 
-The model is sensitive to thresholds below 450 days,
-particularly between 365 and 450 days.
+Increasing the threshold to 730 days raises estimated
+MRR by approximately NT$0.48 million (0.36%).
 
-These are transaction-level eligibility results,
-not verified subscription counts.
+The 450-day sensitivity scenario reconciled with the
+existing dbt KPI mart for all modeled months.
 
 ### Limitations
 
-- The 450-day limit is an analytical assumption.
-- KKBox does not provide authoritative billing rules
-  supporting this threshold.
-- Customer counts are distinct across the entire
-  observed dataset, not monthly paid customer counts.
-- This analysis does not recalculate MRR, ARR, or NRR.
-- Downstream financial sensitivity remains to be tested.
+These figures are modeled analytical estimates rather
+than observed KKBox contractual revenue.
+
+The analysis quantifies expiry-duration sensitivity
+while retaining the current revenue normalization and
+customer classification assumptions.
+
+It does not validate the correctness of the 450-day
+threshold or compare alternative revenue normalization
+methods.
+
+Financial churn and NRR remain suppressed where
+subscription exit evidence is insufficient.
