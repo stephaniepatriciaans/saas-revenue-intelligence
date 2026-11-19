@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: int_subscription_cross_date_overlaps
+    description: >
+      Customer-day detection of potential cross-date
+      subscription coverage overlaps using earlier
+      valid candidate expiration dates.
+      Does not establish paid entitlement.
+
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+
+      - name: transaction_date
+        data_tests:
+          - not_null
+
+      - name: transaction_count
+        data_tests:
+          - not_null
+
+      - name: has_same_day_attribute_conflict
+        data_tests:
+          - not_null
+
+      - name: valid_coverage_candidate_count
+        data_tests:
+          - not_null
+
+      - name: paid_billing_candidate_count
+        data_tests:
+          - not_null
+
+      - name: zero_payment_count
+        data_tests:
+          - not_null
+
+      - name: overlap_days
+        data_tests:
+          - not_null
