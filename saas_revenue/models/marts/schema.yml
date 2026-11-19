@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: dim_month
+    description: Historical transaction-observation reporting months.
+    columns:
+      - name: month_end
+        data_tests: [not_null, unique]
+  - name: dim_customer
+    description: Source member attributes; not limited to transacting customers.
+    columns:
+      - name: customer_id
+        data_tests: [not_null, unique]
+  - name: dim_plan
+    description: Distinct source plan attribute combinations, not official plans.
+    columns:
+      - name: plan_attribute_key
+        data_tests: [not_null, unique]
+  - name: fct_transactions
+    description: Staged source transaction records with quality flags, no invented event ID.
+  - name: fct_customer_month
+    description: Estimated customer-month states. Not observed contractual MRR.
+    columns:
+      - name: customer_id
+        data_tests: [not_null]
+      - name: month_end
+        data_tests: [not_null]
+      - name: modeled_coverage_state
+        data_tests: [not_null]
+  - name: fct_mrr_movements
+    description: Interpretable consecutive month changes; ambiguity excluded.
+  - name: fct_cohort_retention
+    description: Observed first estimated-paid cohort with conditional retention.
+  - name: mart_monthly_kpis
+    description: Conditional modeled revenue and churn KPIs, NOT verified company financials.
+    columns:
+      - name: month_end
+        data_tests: [not_null, unique]

@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: int_coverage_guardrails
+    description: Provisional 450-day interval guardrails and eligibility. No rows dropped.
+    columns:
+      - name: customer_id
+        data_tests: [not_null]
+      - name: is_guardrail_paid_candidate
+        data_tests: [not_null]
+      - name: is_guardrail_coverage_candidate
+        data_tests: [not_null]
