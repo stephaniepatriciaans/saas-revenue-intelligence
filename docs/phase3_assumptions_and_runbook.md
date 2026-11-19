@@ -68,3 +68,42 @@ testing and is not an official KKBox billing rule.
 
 Modeled MRR and ARR remain provisional estimates and
 must not be represented as observed financial results.
+
+
+## Expiry-Duration Sensitivity Analysis
+
+Five analytical thresholds were evaluated against
+`int_subscription_coverage_candidates`:
+
+| Maximum days | Eligible paid transactions | Unambiguous paid candidates | Eligible customers |
+|---|---:|---:|---:|
+| 90 | 1,111,515 | 1,099,050 | 999,921 |
+| 180 | 1,141,834 | 1,127,389 | 1,020,572 |
+| 365 | 1,206,991 | 1,189,481 | 1,075,591 |
+| 450 | 1,306,087 | 1,287,002 | 1,170,344 |
+| 730 | 1,337,247 | 1,311,981 | 1,175,849 |
+
+### Findings
+
+The 450-day threshold is the current modeled baseline.
+
+Compared with 450 days:
+- The 90-day scenario excludes 170,423 eligible customers.
+- The 365-day scenario excludes 94,753 eligible customers.
+- The 730-day scenario includes 5,505 additional customers.
+
+The model is sensitive to thresholds below 450 days,
+particularly between 365 and 450 days.
+
+These are transaction-level eligibility results,
+not verified subscription counts.
+
+### Limitations
+
+- The 450-day limit is an analytical assumption.
+- KKBox does not provide authoritative billing rules
+  supporting this threshold.
+- Customer counts are distinct across the entire
+  observed dataset, not monthly paid customer counts.
+- This analysis does not recalculate MRR, ARR, or NRR.
+- Downstream financial sensitivity remains to be tested.
