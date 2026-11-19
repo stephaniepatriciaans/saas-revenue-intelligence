@@ -70,46 +70,47 @@ Modeled MRR and ARR remain provisional estimates and
 must not be represented as observed financial results.
 
 
-## Financial Sensitivity Analysis — March 2017
 
-A scenario-based analysis recomputed modeled customer-month
-coverage and recurring revenue under five expiry-duration
-thresholds.
+## Revenue Normalization Sensitivity
 
-| Days | Paid customers | Ambiguous | MRR (TWD) | MRR change |
-|---|---:|---:|---:|---:|
-| 90 | 885,655 | 288,718 | 114,780,180.57 | -15.20% |
-| 180 | 903,576 | 270,590 | 116,900,258.32 | -13.64% |
-| 365 | 954,588 | 219,312 | 123,185,148.70 | -8.99% |
-| 450 | 1,047,706 | 126,068 | 135,357,698.47 | Baseline |
-| 730 | 1,051,582 | 122,161 | 135,841,997.18 | +0.36% |
+The baseline monthly revenue normalization uses:
 
-### Interpretation
+MRR = actual_amount_paid × 365.25 / (12 × payment_plan_days)
 
-The current 450-day scenario produces approximately
-NT$135.36 million in modeled March 2017 MRR.
+Alternative annualization conventions were evaluated using
+aggregate proportional rescaling of the existing modeled MRR.
 
-Reducing the threshold to 365 days lowers the estimate
-by approximately NT$12.17 million (8.99%).
+### March 2017 Results
 
-Increasing the threshold to 730 days raises estimated
-MRR by approximately NT$0.48 million (0.36%).
+| Convention | Modeled MRR (TWD) | Modeled ARR (TWD) | MRR change |
+|---|---:|---:|---:|
+| 360-day year | 133,412,105.27 | 1,600,945,263.22 | -1.4374% |
+| 365-day year | 135,265,051.17 | 1,623,180,614.10 | -0.0684% |
+| 365.25-day year | 135,357,698.47 | 1,624,292,381.64 | Baseline |
 
-The 450-day sensitivity scenario reconciled with the
-existing dbt KPI mart for all modeled months.
+### Comparison With Expiry-Duration Sensitivity
+
+The 365-day expiry threshold reduced March modeled MRR
+by approximately 8.99% compared with the 450-day threshold.
+
+Using a 360-day annualization convention reduced modeled
+MRR by approximately 1.44% compared with 365.25 days.
+
+Within the evaluated scenarios, the expiry-duration
+assumption therefore had a larger impact on modeled MRR
+than the annualization convention.
 
 ### Limitations
 
-These figures are modeled analytical estimates rather
-than observed KKBox contractual revenue.
+These results are analytical estimates, not verified
+KKBox contractual recurring revenue.
 
-The analysis quantifies expiry-duration sensitivity
-while retaining the current revenue normalization and
-customer classification assumptions.
+The normalization comparison uses aggregate proportional
+rescaling, rather than recalculating and rounding every
+customer-month individually.
 
-It does not validate the correctness of the 450-day
-threshold or compare alternative revenue normalization
-methods.
+The expiry-duration comparisons retain the baseline
+normalization and customer classification conventions.
 
-Financial churn and NRR remain suppressed where
+Financial churn and NRR remain unavailable where
 subscription exit evidence is insufficient.
